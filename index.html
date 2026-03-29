@@ -47,12 +47,12 @@
             opacity: 0.6; 
         }
 
-        /* NEW: STYLED NAVIGATION BAR */
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(11, 17, 32, 0.9);
+            background: rgba(11, 17, 32, 0.95); /* Slightly darker for mobile readability */
             backdrop-filter: blur(15px);
             padding: 1.2rem 2rem;
             display: flex;
@@ -62,14 +62,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-      
+        
+
         nav ul {
             display: flex;
             list-style: none;
             gap: 2.5rem;
         }
 
-        /* Animated Glowing Links */
         nav a {
             color: var(--text-main);
             text-decoration: none;
@@ -99,6 +99,20 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        /* NEW: Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            color: var(--text-main);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--transition-fast);
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent);
         }
 
         /* Main Layout */
@@ -191,6 +205,7 @@
             font-weight: 600;
             transition: var(--transition-fast);
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+            text-align: center;
         }
 
         .contact-links a:hover {
@@ -455,32 +470,82 @@
             to { opacity: 1; }
         }
 
-        /* Responsive */
+        /* RESPONSIVE DESIGN FOR PHONES & TABLETS */
         @media (max-width: 900px) {
-            .hero { flex-direction: column-reverse !important; text-align: center; gap: 2rem; }
+            /* Mobile Nav Config */
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(11, 17, 32, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition-smooth);
+                border-bottom: 1px solid var(--accent);
+                z-index: 999;
+            }
+
+            nav ul.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            /* Adjust Hero for smaller screens */
+            .hero { flex-direction: column-reverse !important; text-align: center; gap: 2rem; margin-top: 80px; }
             .hero-text { text-align: center !important; }
             .hero-text p { margin: 0 auto 2.5rem auto; }
             .contact-links { justify-content: center !important; }
-            .hero-image { width: 220px; height: 220px; }
+            .hero-image { width: 220px; height: 220px; margin-top: 20px;}
             .scroll-indicator { display: none; }
-            nav ul { display: none; }
+            
+            section { padding: 80px 0; min-height: auto; }
         }
 
         @media (max-width: 600px) {
-            .hero { gap: 1.5rem; }
-            .hero-text h1 { font-size: 2rem; }
-            .hero-image { width: 140px; height: 140px; }
+            .container { padding: 0 1.5rem; }
+            .hero { gap: 1.5rem; margin-top: 60px; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text h2 { font-size: 1.2rem; }
+            .hero-image { width: 160px; height: 160px; border-width: 3px; }
             .contact-links { flex-direction: column; gap: 0.8rem; }
-            .contact-links a { width: 100%; text-align: center; }
+            .contact-links a { width: 100%; }
             
+            /* Section Titles Mobile */
+            .section-title { font-size: 2rem; margin-bottom: 2.5rem; }
+            section { padding: 60px 0; }
+            
+            /* Responsive Timeline Fixes */
             .timeline { padding-left: 1.5rem; }
-            .timeline-item { padding: 1.5rem; }
+            .timeline-item { padding: 1.5rem; margin-bottom: 1.5rem; }
             .timeline-item::before { 
                 left: -1.5rem; 
                 width: 14px; 
                 height: 14px; 
                 top: 2rem; 
             }
+            .card { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -490,7 +555,12 @@
 
     <nav>
         <div class="logo"></div>
-        <ul>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience & Projects</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -603,7 +673,34 @@
     </div>
 
     <script>
-        // High-performance Intersection Observer
+        // 1. Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Switch between hamburger and X icon
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // 2. High-performance Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -614,7 +711,7 @@
 
         document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
 
-        // Animated Canvas Background Logic
+        // 3. Animated Canvas Background Logic
         const canvas = document.getElementById('cyber-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -637,7 +734,9 @@
 
         function init() {
             nodes = [];
-            for (let i = 0; i < 90; i++) nodes.push(new Node());
+            // Less particles on smaller screens for better mobile performance
+            const particleCount = window.innerWidth < 600 ? 40 : 90;
+            for (let i = 0; i < particleCount; i++) nodes.push(new Node());
         }
 
         function animate() {
@@ -659,8 +758,11 @@
         }
 
         init(); animate();
+        
+        // Handle window resize smoothly
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight;
             init();
         });
     </script>
