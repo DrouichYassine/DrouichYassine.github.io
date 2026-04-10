@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassine Drouich - Cybersecurity & Digital Trust</title>
+    <title>Yassine Drouich - Cybersécurité & Confiance Numérique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Color Variables */
+        /* Variables de couleur */
         :root {
             --bg-dark: #0b1120;
             --bg-card: #1e293b;
@@ -14,7 +14,6 @@
             --text-muted: #94a3b8;
             --accent: #10b981;
             --accent-glow: rgba(16, 185, 129, 0.4);
-            /* Ultra-smooth Professional Easing */
             --reveal-curve: cubic-bezier(0.22, 1, 0.36, 1);
             --transition-smooth: all 1.2s var(--reveal-curve);
             --transition-fast: all 0.3s ease;
@@ -35,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Interactive Background (Canvas) */
         #cyber-bg {
             position: fixed;
             top: 0;
@@ -52,7 +50,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(11, 17, 32, 0.95); /* Slightly darker for mobile readability */
+            background: rgba(11, 17, 32, 0.95);
             backdrop-filter: blur(15px);
             padding: 1.2rem 2rem;
             display: flex;
@@ -62,18 +60,25 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        
+        nav .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px var(--accent-glow);
+            z-index: 1001;
+        }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: var(--transition-fast);
             position: relative;
@@ -89,33 +94,19 @@
             left: 0;
             background-color: var(--accent);
             transition: var(--transition-fast);
-            box-shadow: 0 0 8px var(--accent-glow);
         }
 
-        nav a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
+        nav a:hover { color: var(--accent); }
+        nav a:hover::after { width: 100%; }
 
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* NEW: Mobile Menu Toggle Button */
         .menu-toggle {
             display: none;
             color: var(--text-main);
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 1001;
-            transition: var(--transition-fast);
         }
 
-        .menu-toggle:hover {
-            color: var(--accent);
-        }
-
-        /* Main Layout */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -159,11 +150,6 @@
             width: 100%;
         }
 
-        .hero-text {
-            flex: 1;
-            min-width: 0;
-        }
-
         .hero-text h1 {
             font-size: clamp(2.5rem, 8vw, 4rem);
             line-height: 1.1;
@@ -175,7 +161,6 @@
             font-size: 1.5rem;
             color: var(--accent);
             margin-bottom: 1.5rem;
-            font-weight: 500;
             opacity: 0;
             animation: slideUpFade 1s var(--reveal-curve) 0.2s forwards;
         }
@@ -204,20 +189,17 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition-fast);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
-            text-align: center;
         }
 
         .contact-links a:hover {
             background: #0ea5e9;
             color: white;
-            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
             transform: translateY(-3px);
         }
 
         .hero-image {
-            width: 320px;
-            height: 320px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--bg-card), #334155);
             border: 4px solid var(--accent);
@@ -234,57 +216,41 @@
             object-fit: cover;
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-        }
-
-        .mouse {
-            width: 28px;
-            height: 46px;
-            border: 2px solid var(--text-muted);
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .wheel {
-            width: 4px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 2px;
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scrollWheel 2s infinite;
-        }
-
-        @keyframes scrollWheel {
-            0% { opacity: 1; top: 10px; }
-            100% { opacity: 0; top: 28px; }
-        }
-
-        /* Reveal Logic for all sections */
-        .hidden {
-            opacity: 0;
-            transform: translateY(60px);
+        /* Cards & Timeline */
+        .card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent);
             transition: var(--transition-smooth);
-            will-change: transform, opacity;
         }
 
-        .show {
-            opacity: 1;
-            transform: translateY(0);
+        .card:hover {
+            transform: translateX(15px);
+            background: #253347;
+        }
+
+        .card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .card .date-role { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; font-family: monospace; }
+        .ctf-name { color: var(--accent); text-shadow: 0 0 8px var(--accent-glow); }
+
+        /* Lien Certificat */
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .cert-link:hover {
+            color: #0ea5e9;
+            text-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
         }
 
         /* Skills Grid */
@@ -305,11 +271,7 @@
             transform: translateY(40px);
         }
 
-        .show .skill-box {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .show .skill-box { opacity: 1; transform: translateY(0); }
         .show .skill-box:nth-child(1) { transition-delay: 0.1s; }
         .show .skill-box:nth-child(2) { transition-delay: 0.3s; }
         .show .skill-box:nth-child(3) { transition-delay: 0.5s; }
@@ -317,91 +279,13 @@
         .skill-box:hover {
             transform: translateY(-15px) scale(1.03);
             border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 20px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        .skill-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            display: inline-block;
-            filter: drop-shadow(0 0 10px var(--accent-glow));
-        }
+        .skill-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 2rem; filter: drop-shadow(0 0 10px var(--accent-glow)); }
 
-        .skill-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        .skill-box ul {
-            list-style: none;
-            text-align: left;
-            color: var(--text-muted);
-        }
-
-        .skill-box ul li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .skill-box ul li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Experience Cards */
-        .card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--accent);
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover {
-            transform: translateX(15px);
-            background: #253347;
-        }
-
-        .card h3 {
-            color: var(--text-main);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card .date-role {
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            font-family: monospace;
-        }
-        
-        .ctf-name {
-            color: var(--accent);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        /* TIMELINE STYLING (Education) */
-        .timeline {
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            bottom: 10px;
-            width: 2px;
-            background: rgba(16, 185, 129, 0.2);
-        }
+        .timeline { position: relative; padding-left: 2.5rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(16, 185, 129, 0.2); }
 
         .timeline-item {
             background: var(--bg-card);
@@ -410,142 +294,35 @@
             margin-bottom: 2.5rem;
             position: relative;
             transition: var(--transition-smooth);
-            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem; 
-            top: 3rem;
-            width: 16px;
-            height: 16px;
-            background: var(--bg-dark);
-            border: 3px solid var(--accent);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            transition: var(--transition-fast);
-            box-shadow: 0 0 10px var(--accent-glow);
-            z-index: 2;
+            content: ''; position: absolute; left: -2.5rem; top: 3rem; width: 16px; height: 16px;
+            background: var(--bg-dark); border: 3px solid var(--accent); border-radius: 50%;
+            transform: translateX(-50%); z-index: 2;
         }
 
-        .timeline-item:hover {
-            transform: translateX(15px);
-            border-color: rgba(16, 185, 129, 0.3);
-            background: #253347;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+        .timeline-item:hover { transform: translateX(15px); background: #253347; }
+        .timeline-item:hover::before { background: var(--accent); transform: translateX(-50%) scale(1.3); }
 
-        .timeline-item:hover::before {
-            background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-            transform: translateX(-50%) scale(1.3);
-        }
+        /* Reveal Logic */
+        .hidden { opacity: 0; transform: translateY(60px); transition: var(--transition-smooth); }
+        .show { opacity: 1; transform: translateY(0); }
 
-        .timeline-item h3 {
-            color: var(--text-main);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .timeline-item .date-role {
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            font-family: monospace;
-        }
-
-        /* Animations */
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* RESPONSIVE DESIGN FOR PHONES & TABLETS */
+        /* Responsive */
         @media (max-width: 900px) {
-            /* Mobile Nav Config */
-            .menu-toggle {
-                display: block;
-            }
-            
+            .menu-toggle { display: block; }
             nav ul {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(11, 17, 32, 0.98);
-                flex-direction: column;
-                align-items: center;
-                gap: 0;
-                padding: 1rem 0;
-                transform: translateY(-150%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition-smooth);
-                border-bottom: 1px solid var(--accent);
-                z-index: 999;
+                position: absolute; top: 100%; left: 0; width: 100%; background: rgba(11, 17, 32, 0.98);
+                flex-direction: column; transform: translateY(-150%); opacity: 0; visibility: hidden; transition: var(--transition-smooth);
             }
-
-            nav ul.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul li a {
-                display: block;
-                padding: 1.5rem;
-                font-size: 1.2rem;
-            }
-
-            /* Adjust Hero for smaller screens */
+            nav ul.active { transform: translateY(0); opacity: 1; visibility: visible; }
+            nav ul li a { display: block; padding: 1.5rem; text-align: center; }
             .hero { flex-direction: column-reverse !important; text-align: center; gap: 2rem; margin-top: 80px; }
-            .hero-text { text-align: center !important; }
-            .hero-text p { margin: 0 auto 2.5rem auto; }
-            .contact-links { justify-content: center !important; }
-            .hero-image { width: 220px; height: 220px; margin-top: 20px;}
-            .scroll-indicator { display: none; }
-            
-            section { padding: 80px 0; min-height: auto; }
-        }
-
-        @media (max-width: 600px) {
-            .container { padding: 0 1.5rem; }
-            .hero { gap: 1.5rem; margin-top: 60px; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-text h2 { font-size: 1.2rem; }
-            .hero-image { width: 160px; height: 160px; border-width: 3px; }
-            .contact-links { flex-direction: column; gap: 0.8rem; }
-            .contact-links a { width: 100%; }
-            
-            /* Section Titles Mobile */
-            .section-title { font-size: 2rem; margin-bottom: 2.5rem; }
-            section { padding: 60px 0; }
-            
-            /* Responsive Timeline Fixes */
-            .timeline { padding-left: 1.5rem; }
-            .timeline-item { padding: 1.5rem; margin-bottom: 1.5rem; }
-            .timeline-item::before { 
-                left: -1.5rem; 
-                width: 14px; 
-                height: 14px; 
-                top: 2rem; 
-            }
-            .card { padding: 1.5rem; }
+            .hero-image { width: 220px; height: 220px; }
         }
     </style>
 </head>
@@ -554,17 +331,14 @@
     <canvas id="cyber-bg"></canvas>
 
     <nav>
-        <div class="logo"></div>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-
+        <div class="logo">YD.</div>
+        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience & Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#experience">Projets</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#education">Formation</a></li>
         </ul>
     </nav>
 
@@ -572,158 +346,125 @@
         <section class="hero" id="about">
             <div class="hero-text">
                 <h1>Yassine Drouich</h1>
-                <h2>Cybersecurity & Digital Trust Engineering Student</h2>
-                <p>Engineering student passionate about data protection, cryptography, and system administration. Actively seeking stimulating challenges to secure the infrastructures of tomorrow.</p>
+                <h2>Étudiant en Ingénierie Cybersécurité & Confiance Numérique</h2>
+                <p>Passionné par la protection des données, la cryptographie et l'administration système. En recherche active de défis stimulants pour sécuriser les infrastructures de demain.</p>
                 <div class="contact-links">
-                    <a href="mailto:yassine.drouich04@gmail.com">Contact Me</a>
+                    <a href="mailto:yassine.drouich04@gmail.com">Me Contacter</a>
                     <a href="https://linkedin.com/in/yassine-drouich-b7a397253" target="_blank" style="background: transparent; color: var(--accent); border: 2px solid var(--accent);">LinkedIn</a>
                 </div>
             </div>
-            
-            <div class="hero-image">
-                <img src="Profile.jpg" alt="Photo of Yassine Drouich">
-            </div>
-
-            <a href="#experience" class="scroll-indicator">
-                <div class="mouse"><div class="wheel"></div></div>
-            </a>
+            <div class="hero-image"><img src="Profile.jpg" alt="Yassine Drouich"></div>
         </section>
 
         <section id="experience" class="hidden">
-            <h2 class="section-title">Experience & Projects</h2>
-            
+            <h2 class="section-title">Expériences & Projets</h2>
             <div class="card">
                 <h3>Python Web Application Firewall (WAF)</h3>
-                <div class="date-role">Summer Internship | Groupe Azura | 07/2025 - 08/2025</div>
-                <p>Developed a Python web application firewall to filter and secure HTTP traffic. Features a modular architecture (core, rules, utils) including a main engine, configuration management, and a comprehensive logging system. Executed via a configurable script with a diagnostic debug mode.</p>
+                <div class="date-role">Stage d'été | Groupe Azura | 07/2025 - 08/2025</div>
+                <p>Développement d'un pare-feu applicatif en Python pour filtrer le trafic HTTP. Architecture modulaire incluant un moteur de règles et un système de logging complet.</p>
             </div>
-
             <div class="card">
-                <h3>MMY Champions - E-commerce Platform</h3>
-                <div class="date-role">Academic Project | Laravel & Web Security</div>
-                <p>Designed and developed a secure, responsive e-commerce website. Built with Laravel (MVC), Bootstrap, and MySQL with Stripe integration. Implemented active and robust defenses against SQL injections and XSS vulnerabilities.</p>
+                <h3>MMY Champions - Plateforme E-commerce</h3>
+                <div class="date-role">Projet Académique | Laravel & Sécurité Web</div>
+                <p>Conception d'un site sécurisé avec Laravel. Implémentation de défenses contre les injections SQL et les failles XSS.</p>
             </div>
-
             <div class="card">
-                <h3>CTF (Capture The Flag) Competitions</h3>
-                <div class="date-role">Participant | 2 Competitions</div>
-                <p>Active participation in practical cybersecurity challenges to test and improve my skills in real-world conditions (Web, Cryptography, Forensics, etc.).</p>
-                <ul style="margin-top: 10px; list-style: none;">
-                    <li style="margin-bottom: 10px; position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent);">▹</span><strong class="ctf-name">Nexori CTF (Code 212 Center):</strong> Participated in on-site cybersecurity challenges, applying practical penetration testing and defense strategies in a live, competitive environment.</li>
-                    <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent);">▹</span><strong class="ctf-name">MAC2026 (Online):</strong> Competed in virtual CTF events, tackling diverse security puzzles and expanding my problem-solving capabilities across various infosec domains.</li>
+                <h3>Compétitions CTF (Capture The Flag)</h3>
+                <div class="date-role">Participant Actif</div>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px; position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent);">▹</span><strong class="ctf-name">Nexori CTF :</strong> Défis de tests d'intrusion en environnement réel.</li>
+                    <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent);">▹</span><strong class="ctf-name">MAC2026 :</strong> Compétitions virtuelles sur divers domaines de l'infosec.</li>
                 </ul>
             </div>
         </section>
 
+        <section id="certifications" class="hidden">
+            <h2 class="section-title">Certifications</h2>
+            <div class="card" style="border-left-color: #0ea5e9;">
+                <h3>Google Cybersecurity Professional Certificate</h3>
+                <div class="date-role">Coursera | Foundations of Cybersecurity</div>
+                <p>Certification validant les fondamentaux de la cybersécurité : analyse des risques, frameworks de sécurité (NIST), utilisation d'outils comme SQL et Python pour la sécurité, et détection d'incidents.</p>
+                <a href="https://coursera.org/share/8951f5976ac3420d1a453851e5ffeef6" target="_blank" class="cert-link">
+                    Voir le certificat officiel <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </section>
+
         <section id="skills" class="hidden">
-            <h2 class="section-title">Technical Expertise</h2>
+            <h2 class="section-title">Expertise Technique</h2>
             <div class="skills-grid">
-                
                 <div class="skill-box">
                     <i class="fa-solid fa-shield-halved skill-icon"></i>
-                    <h3>Cybersecurity</h3>
+                    <h3>Cybersécurité</h3>
                     <ul>
-                        <li>Applied Cryptography</li>
-                        <li>Firewall Configuration (iptables)</li>
-                        <li>Penetration Testing (ARP poisoning, DNS spoofing, Hijacking)</li>
+                        <li>Cryptographie appliquée</li>
+                        <li>Configuration Firewall (iptables)</li>
+                        <li>Tests d'intrusion (ARP, DNS, Hijacking)</li>
                     </ul>
                 </div>
-
                 <div class="skill-box">
                     <i class="fa-solid fa-network-wired skill-icon"></i>
-                    <h3>Networking & Infrastructure</h3>
+                    <h3>Réseaux & Infra</h3>
                     <ul>
-                        <li>OSI Model, TCP/IP, Sockets</li>
-                        <li>Routing, DNS, DHCP, HTTPS</li>
+                        <li>Modèle OSI, TCP/IP, Sockets</li>
+                        <li>Routage, DNS, DHCP, HTTPS</li>
                         <li>Cisco Packet Tracer</li>
                     </ul>
                 </div>
-
                 <div class="skill-box">
                     <i class="fa-solid fa-laptop-code skill-icon"></i>
-                    <h3>Development</h3>
+                    <h3>Développement</h3>
                     <ul>
                         <li>Python, C, Java, PHP</li>
                         <li>JS, TypeScript, HTML/CSS</li>
                         <li>MySQL, MongoDB</li>
                     </ul>
                 </div>
-
             </div>
         </section>
 
         <section id="education" class="hidden">
-            <h2 class="section-title">Education</h2>
+            <h2 class="section-title">Formation</h2>
             <div class="timeline">
-                
                 <div class="timeline-item hidden">
-                    <h3>National School of Applied Sciences (ENSAA)</h3>
-                    <div class="date-role">Agadir | 09/2022 - Present</div>
-                    <p><strong>Engineering Degree:</strong> Specialization in Information Systems Security and Digital Trust (since 09/2024).<br><br>
-                    <strong>Integrated Preparatory Cycle:</strong> Fundamental training in engineering sciences (09/2022 - 06/2024).</p>
+                    <h3>ENSA Agadir (ENSAA)</h3>
+                    <div class="date-role">Agadir | 09/2022 - Présent</div>
+                    <p><strong>Cycle d'Ingénieur :</strong> Spécialisation en Sécurité des Systèmes d'Information (depuis 09/2024).<br><br>
+                    <strong>Cycle Préparatoire :</strong> Formation fondamentale en sciences de l'ingénieur (2022 - 2024).</p>
                 </div>
-
                 <div class="timeline-item hidden">
-                    <h3>High School Diploma in Mathematical Sciences A</h3>
+                    <h3>Baccalauréat Sciences Mathématiques A</h3>
                     <div class="date-role">09/2021 - 06/2022</div>
                 </div>
-
             </div>
         </section>
     </div>
 
     <script>
-        // 1. Mobile Menu Toggle Logic
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         const icon = menuToggle.querySelector('i');
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            
-            // Switch between hamburger and X icon
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
 
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            });
-        });
-
-        // 2. High-performance Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
 
-        // 3. Animated Canvas Background Logic
         const canvas = document.getElementById('cyber-bg');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let nodes = [];
         class Node {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8; this.vy = (Math.random() - 0.5) * 0.8;
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
@@ -731,14 +472,10 @@
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
         }
-
         function init() {
-            nodes = [];
-            // Less particles on smaller screens for better mobile performance
-            const particleCount = window.innerWidth < 600 ? 40 : 90;
-            for (let i = 0; i < particleCount; i++) nodes.push(new Node());
+            nodes = []; const count = window.innerWidth < 600 ? 40 : 90;
+            for (let i = 0; i < count; i++) nodes.push(new Node());
         }
-
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             nodes.forEach((n, i) => {
@@ -756,15 +493,8 @@
             });
             requestAnimationFrame(animate);
         }
-
         init(); animate();
-        
-        // Handle window resize smoothly
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight;
-            init();
-        });
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
     </script>
 </body>
 </html>
