@@ -112,7 +112,7 @@
 
         /* Main Layout */
         .container {
-            max-width: 1200px; /* Élargi pour les 4 colonnes */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -237,7 +237,29 @@
 
         .card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 0.5rem; }
         .card .date-role { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; font-family: monospace; }
-        .ctf-name { color: var(--accent); text-shadow: 0 0 8px var(--accent-glow); }
+        
+        /* Github Project Links */
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            padding: 6px 14px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+        }
+        
+        .project-link:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
 
         /* Certificate Link Style */
         .cert-link {
@@ -260,7 +282,7 @@
         /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur PC */
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
 
@@ -326,7 +348,7 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -344,7 +366,7 @@
 
         @media (max-width: 600px) {
             .skills-grid {
-                grid-template-columns: 1fr; /* 1 colonne sur smartphone */
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -354,7 +376,7 @@
     <canvas id="cyber-bg"></canvas>
 
     <nav>
-        <div class="logo">YD.</div>
+        <div class="logo">YD</div>
         <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
@@ -404,12 +426,18 @@
                 <h3>Python Web Application Firewall (WAF)</h3>
                 <div class="date-role">Summer Internship | Groupe Azura | 2025</div>
                 <p>Developed a custom WAF in Python to filter and secure HTTP traffic. Features a modular engine for rule management, detailed logging, and a diagnostic debug mode to analyze real-time threats.</p>
+                <a href="https://github.com/DrouichYassine/WAF" target="_blank" class="project-link">
+                    <i class="fa-brands fa-github"></i> View Repository
+                </a>
             </div>
 
             <div class="card">
                 <h3>MMY Champions - E-commerce Platform</h3>
                 <div class="date-role">Academic Project | Laravel & Web Security</div>
                 <p>Built a secure e-commerce platform using Laravel. Implemented active defenses against SQL injections and XSS, integrated Stripe for secure payments, and ensured responsive UI with Bootstrap.</p>
+                <a href="https://github.com/DrouichYassine/EcommerceProject" target="_blank" class="project-link">
+                    <i class="fa-brands fa-github"></i> View Repository
+                </a>
             </div>
         </section>
 
@@ -463,8 +491,8 @@
                     <h3>Development</h3>
                     <ul>
                         <li>Python, C, Java, PHP</li>
-                        <li>JavaScript & TypeScript</li>
-                        <li>Laravel (MVC), HTML/CSS</li>
+                        <li>JS, TypeScript, <strong>Angular</strong></li>
+                        <li><strong>Laravel</strong> (MVC), HTML/CSS</li>
                         <li>MySQL & MongoDB</li>
                     </ul>
                 </div>
